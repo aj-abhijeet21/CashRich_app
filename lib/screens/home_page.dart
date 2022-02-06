@@ -91,7 +91,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        buildYearButtons(snapshot.data!),
+                        Container(
+                            height: 30,
+                            child: buildYearButtons(snapshot.data!)),
                         const SizedBox(
                           height: 20,
                         ),
@@ -165,9 +167,29 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       ),
     );
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: children,
+    return ListView.separated(
+      scrollDirection: Axis.horizontal,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return children[index];
+      },
+      separatorBuilder: (context, index) {
+        return const SizedBox(
+          width: 20,
+        );
+      },
+      itemCount: children.length,
+      padding: const EdgeInsets.only(
+        left: 10.0,
+      ),
     );
+
+    // (
+    //   // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    //   children: children,
+    //   scrollDirection: Axis.horizontal,
+    //   shrinkWrap: true,
+    //   padding: EdgeInsets.symmetric(horizontal: 20),
+    // );
   }
 }

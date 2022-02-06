@@ -19,7 +19,7 @@ class SipModel {
     // date = date == 'Today' ? 'Today' : json['date'].toString().substring();
     final equity = json['equity'];
     final description = json['point'] ?? 'No Description Found';
-    final sensex = json['sensex'] == null ? '0' : json['sensex'];
+    final sensex = json['sensex'] ?? '0';
 
     return SipModel(
       date: date,
